@@ -44,15 +44,13 @@ class MainActivity : AppCompatActivity() {
 
                     val weather = JSONObject(apiResponse).getJSONArray("weather")
                     val desc = weather.getJSONObject(0).getString("description")
-                    weather.getJSONObject(0).getString("main")
 
 
                     val main = JSONObject(apiResponse).getJSONObject("main")
                     val temp = main.getString("temp")
                     val tempmin = main.getString("temp_min")
                     val tempmax = main.getString("temp_max")
-
-
+                    
 
 
                     result_info?.text =
