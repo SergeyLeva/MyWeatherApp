@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -12,8 +14,8 @@ import org.jetbrains.anko.doAsync
 import org.json.JSONObject
 import java.net.URL
 
-class MainActivity : AppCompatActivity() {
 
+class MainActivity : AppCompatActivity() {
 
     private var user_field: EditText? = null
     private var main_btn: Button? = null
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         user_field = findViewById(R.id.user_field)
         main_btn = findViewById(R.id.main_btn)
@@ -50,15 +53,30 @@ class MainActivity : AppCompatActivity() {
                     val temp = main.getString("temp")
                     val tempmin = main.getString("temp_min")
                     val tempmax = main.getString("temp_max")
-                    
 
 
                     result_info?.text =
                         "Температура: $temp\n$desc, Мин.температура: $tempmin, Макс.температура: $tempmax"
-
-
                 }
             }
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.info -> {
+                Toast.makeText(this, "Это учебная версия", Toast.LENGTH_LONG).show()
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
+
+
